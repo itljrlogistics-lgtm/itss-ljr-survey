@@ -1,0 +1,2770 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Service Satisfaction Survey (ITSS) — Multi-Aplikasi LJR Group</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a73e8;
+            --primary-dark: #1557b0;
+            --bg-color: #e8f0fe;
+            --card-bg: #ffffff;
+            --border-color: #dadce0;
+            --text-main: #202124;
+            --text-muted: #5f6368;
+            --error-color: #d93025;
+            --accent-bg: #f8f9fa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 20px 12px 60px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 14px;
+            box-shadow: 0 1px 2px rgba(60,64,67,0.1);
+        }
+
+        .header-card {
+            border-top: 10px solid var(--primary-color);
+            padding-top: 22px;
+        }
+
+        .header-card h1 {
+            font-size: 26px;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--primary-color);
+            margin-bottom: 14px;
+        }
+
+        .meta-info {
+            background-color: var(--accent-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .meta-info p {
+            margin-bottom: 4px;
+        }
+
+        .meta-info p:last-child {
+            margin-bottom: 0;
+        }
+
+        .instructions {
+            font-size: 14px;
+            color: var(--text-main);
+        }
+
+        .instructions h3 {
+            font-size: 15px;
+            margin: 14px 0 6px;
+            color: var(--text-main);
+        }
+
+        .instructions ul {
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        .instructions li {
+            margin-bottom: 4px;
+        }
+
+        .scale-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .scale-badge {
+            background-color: var(--accent-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .scale-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .section-banner {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 14px 24px;
+            border-radius: 8px 8px 0 0;
+            font-size: 18px;
+            font-weight: 500;
+            margin-top: 20px;
+        }
+
+        .section-desc {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            padding: 14px 24px;
+            margin-bottom: 14px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .sub-section-header {
+            background-color: #d2e3fc;
+            color: #174ea6;
+            padding: 12px 20px;
+            border-left: 5px solid var(--primary-color);
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+            margin: 18px 0 10px;
+        }
+
+        .question-title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .required {
+            color: var(--error-color);
+            margin-left: 4px;
+        }
+
+        .question-helper {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 4px 0;
+        }
+
+        .option-label input[type="radio"],
+        .option-label input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        select {
+            width: 100%;
+            max-width: 480px;
+            padding: 10px 12px;
+            font-size: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: #fff;
+            color: var(--text-main);
+            outline: none;
+        }
+
+        select:focus {
+            border-color: var(--primary-color);
+            border-width: 2px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 10px 12px;
+            font-family: inherit;
+            font-size: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            resize: vertical;
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: var(--primary-color);
+            border-width: 2px;
+        }
+
+        .dimension-header {
+            background-color: #f1f3f4;
+            padding: 10px 16px;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 4px;
+            margin-bottom: 16px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .grid-wrapper {
+            overflow-x: auto;
+        }
+
+        table.likert-grid {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        table.likert-grid th {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 10px 6px;
+            border-bottom: 1px solid var(--border-color);
+            width: 9%;
+        }
+
+        table.likert-grid th:first-child {
+            text-align: left;
+            width: 46%;
+        }
+
+        table.likert-grid td {
+            padding: 12px 6px;
+            border-bottom: 1px solid #f1f3f4;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 14px;
+        }
+
+        table.likert-grid td:first-child {
+            text-align: left;
+            padding-right: 12px;
+        }
+
+        table.likert-grid tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        table.freq-grid {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 680px;
+        }
+
+        table.freq-grid th {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 10px 4px;
+            border-bottom: 1px solid var(--border-color);
+            width: 13%;
+        }
+
+        table.freq-grid th:first-child {
+            text-align: left;
+            width: 22%;
+        }
+
+        table.freq-grid td {
+            padding: 12px 4px;
+            border-bottom: 1px solid #f1f3f4;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 14px;
+        }
+
+        table.freq-grid td:first-child {
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .item-code {
+            display: inline-block;
+            background-color: #e8f0fe;
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 6px;
+        }
+
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .branch-notice {
+            background-color: #fef7e0;
+            border: 1px solid #f9ab00;
+            color: #b06000;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 24px;
+        }
+
+        .btn-submit {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 1px 2px rgba(60,64,67,0.3);
+            transition: background-color 0.2s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-clear {
+            background: transparent;
+            border: none;
+            color: var(--primary-color);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        .btn-clear:hover {
+            background-color: rgba(26, 115, 232, 0.08);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #323232;
+            color: #fff;
+            padding: 14px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: none;
+            max-width: 90%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <form id="itssForm">
+        <!-- HEADER CARD -->
+        <div class="card header-card">
+            <h1>IT SERVICE SATISFACTION SURVEY (ITSS)</h1>
+            <div class="subtitle">Internal Customer Satisfaction Measurement — LJR Group</div>
+            
+            <div class="meta-info">
+                <p><strong>Periode:</strong> Triwulanan</p>
+                <p><strong>Responden:</strong> Seluruh karyawan LJR Group</p>
+                <p><strong>Tujuan:</strong> Mengukur kepuasan pengguna terhadap kualitas aplikasi perusahaan, kualitas infrastruktur TI, dan kualitas layanan IT Support.</p>
+            </div>
+
+            <div class="instructions">
+                <h3>Pengantar</h3>
+                <p>Survei ini bertujuan untuk memperoleh masukan dari seluruh karyawan mengenai kualitas layanan teknologi informasi yang digunakan dalam pekerjaan sehari-hari.</p>
+                <p style="margin-top:6px;">Aplikasi yang menjadi objek pengukuran dalam survei ini adalah:</p>
+                <ul>
+                    <li><strong>LIMA</strong></li>
+                    <li><strong>S3 V2</strong></li>
+                    <li><strong>FAT & Billing V1</strong></li>
+                    <li><strong>HCMS</strong></li>
+                    <li><strong>WMS Ailox</strong></li>
+                </ul>
+                <p>Responden dapat memilih lebih dari satu aplikasi yang digunakan. Penilaian kualitas aplikasi diberikan secara terpisah untuk setiap aplikasi yang pernah digunakan dalam tiga bulan terakhir.</p>
+                <p style="margin-top:6px;">Jawablah pertanyaan berdasarkan pengalaman selama <strong>tiga bulan terakhir</strong>. Hasil survei akan digunakan sebagai bahan evaluasi dan peningkatan layanan TI perusahaan.</p>
+
+                <div class="scale-legend">
+                    <span class="scale-badge"><strong>1</strong> = Sangat Tidak Setuju</span>
+                    <span class="scale-badge"><strong>2</strong> = Tidak Setuju</span>
+                    <span class="scale-badge"><strong>3</strong> = Netral</span>
+                    <span class="scale-badge"><strong>4</strong> = Setuju</span>
+                    <span class="scale-badge"><strong>5</strong> = Sangat Setuju</span>
+                    <span class="scale-badge"><strong>N/A</strong> = Tidak Relevan / Tidak Memiliki Pengalaman</span>
+                </div>
+                <div class="scale-note">N/A tidak dihitung sebagai skor dan akan diperlakukan sebagai data kosong (missing value), bukan nilai 0.</div>
+            </div>
+        </div>
+
+        <!-- A. PROFIL RESPONDEN -->
+        <div class="section-banner">A. PROFIL RESPONDEN</div>
+        <div class="section-desc">Silakan lengkapi informasi profil responden di bawah ini.</div>
+
+        <!-- A01 -->
+        <div class="card">
+            <label class="question-title">A01. Perusahaan <span class="required">*</span></label>
+            <div class="radio-group">
+                <label class="option-label"><input type="radio" name="A01" value="LESTARI JAYA RAYA" required> LESTARI JAYA RAYA</label>
+                <label class="option-label"><input type="radio" name="A01" value="LESTARI JAYA RAYA SENTOSA"> LESTARI JAYA RAYA SENTOSA</label>
+                <label class="option-label"><input type="radio" name="A01" value="PELANGI SUKSES CEMERLANG"> PELANGI SUKSES CEMERLANG</label>
+                <label class="option-label"><input type="radio" name="A01" value="MENTARI JAYA RAYA"> MENTARI JAYA RAYA</label>
+            </div>
+        </div>
+
+        <!-- A02 -->
+        <div class="card">
+            <label class="question-title" for="A02">A02. Departemen <span class="required">*</span></label>
+            <select id="A02" name="A02" required>
+                <option value="">-- Pilih Departemen --</option>
+                <option value="Accounting">Accounting</option>
+<option value="Branch Operational">Branch Operational</option>
+<option value="Business & Operational Enhancement">Business & Operational Enhancement</option>
+<option value="Claim Investigation System">Claim Investigation System</option>
+<option value="Commercial">Commercial</option>
+<option value="Contract Logistic">Contract Logistic</option>
+<option value="Corporate">Corporate</option>
+<option value="Corporate Development & Business Intelligence">Corporate Development & Business Intelligence</option>
+<option value="Corporate Strategic Engagement">Corporate Strategic Engagement</option>
+<option value="Finance">Finance</option>
+<option value="Fleet Management">Fleet Management</option>
+<option value="Human Capital">Human Capital</option>
+<option value="IRGA & HSE">IRGA & HSE</option>
+<option value="Operational LJRS">Operational LJRS</option>
+<option value="Operational MJR">Operational MJR</option>
+<option value="Operational PSC">Operational PSC</option>
+<option value="Planning & Transport">Planning & Transport</option>
+<option value="Resource">Resource</option>
+<option value="System Development & Improvement Control">System Development & Improvement Control</option>
+<option value="Tax">Tax</option>
+<option value="Budgetting & Reporting">Budgetting & Reporting</option>
+<option value="Technology & Digital Transformation">Technology & Digital Transformation</option>
+<option value="Vendor Management">Vendor Management</option>
+<option value="Warehouse">Warehouse</option>
+            </select>
+        </div>
+
+        <!-- A03 -->
+        <div class="card">
+            <label class="question-title" for="A03">A03. Workplace Location <span class="required">*</span></label>
+            <select id="A03" name="A03" required>
+                <option value="">-- Pilih Lokasi Kerja --</option>
+                <option value="OFFICE-AAM ACEH">OFFICE-AAM ACEH</option>
+<option value="OFFICE-AAM BALIKPAPAN">OFFICE-AAM BALIKPAPAN</option>
+<option value="OFFICE-AAM BANDUNG">OFFICE-AAM BANDUNG</option>
+<option value="OFFICE-AAM BANGKA BELITUNG">OFFICE-AAM BANGKA BELITUNG</option>
+<option value="OFFICE-AAM BANJARMASIN">OFFICE-AAM BANJARMASIN</option>
+<option value="OFFICE-AAM BATAM">OFFICE-AAM BATAM</option>
+<option value="OFFICE-AAM BEKASI">OFFICE-AAM BEKASI</option>
+<option value="OFFICE-AAM BOGOR">OFFICE-AAM BOGOR</option>
+<option value="OFFICE-AAM CIKARANG">OFFICE-AAM CIKARANG</option>
+<option value="OFFICE-AAM CIPUTAT">OFFICE-AAM CIPUTAT</option>
+<option value="OFFICE-AAM CIREBON">OFFICE-AAM CIREBON</option>
+<option value="OFFICE-AAM JAKARTA 1">OFFICE-AAM JAKARTA 1</option>
+<option value="OFFICE-AAM JAKARTA 2">OFFICE-AAM JAKARTA 2</option>
+<option value="OFFICE-AAM JAKARTA 3">OFFICE-AAM JAKARTA 3</option>
+<option value="OFFICE-AAM JAMBI">OFFICE-AAM JAMBI</option>
+<option value="OFFICE-AAM JAYAPURA">OFFICE-AAM JAYAPURA</option>
+<option value="OFFICE-AAM KUPANG">OFFICE-AAM KUPANG</option>
+<option value="OFFICE-AAM LAMPUNG">OFFICE-AAM LAMPUNG</option>
+<option value="OFFICE-AAM MATARAM">OFFICE-AAM MATARAM</option>
+<option value="OFFICE-AAM MEDAN">OFFICE-AAM MEDAN</option>
+<option value="OFFICE-AAM PADANG">OFFICE-AAM PADANG</option>
+<option value="OFFICE-AAM PALEMBANG">OFFICE-AAM PALEMBANG</option>
+<option value="OFFICE-AAM PEKANBARU">OFFICE-AAM PEKANBARU</option>
+<option value="OFFICE-AAM PONTIANAK">OFFICE-AAM PONTIANAK</option>
+<option value="OFFICE-AAM PURWOKERTO">OFFICE-AAM PURWOKERTO</option>
+<option value="OFFICE-AAM RAWAMANGUN">OFFICE-AAM RAWAMANGUN</option>
+<option value="OFFICE-AAM SAMARINDA">OFFICE-AAM SAMARINDA</option>
+<option value="OFFICE-AAM SEMARANG">OFFICE-AAM SEMARANG</option>
+<option value="OFFICE-AAM SOLO">OFFICE-AAM SOLO</option>
+<option value="OFFICE-AAM SURABAYA">OFFICE-AAM SURABAYA</option>
+<option value="OFFICE-AAM TANGERANG">OFFICE-AAM TANGERANG</option>
+<option value="OFFICE-AAM TEGAL">OFFICE-AAM TEGAL</option>
+<option value="OFFICE-AAM YOGYAKARTA">OFFICE-AAM YOGYAKARTA</option>
+<option value="OFFICE-APL MAKASSAR">OFFICE-APL MAKASSAR</option>
+<option value="OFFICE-APL MANADO">OFFICE-APL MANADO</option>
+<option value="OFFICE-ASTRA - MAKASSAR">OFFICE-ASTRA - MAKASSAR</option>
+<option value="OFFICE-BRANCH BALIKPAPAN">OFFICE-BRANCH BALIKPAPAN</option>
+<option value="OFFICE-BRANCH BANDUNG">OFFICE-BRANCH BANDUNG</option>
+<option value="OFFICE-BRANCH BANJARMASIN">OFFICE-BRANCH BANJARMASIN</option>
+<option value="OFFICE-BRANCH BATAM">OFFICE-BRANCH BATAM</option>
+<option value="OFFICE-BRANCH BONE">OFFICE-BRANCH BONE</option>
+<option value="OFFICE-BRANCH DENPASAR">OFFICE-BRANCH DENPASAR</option>
+<option value="OFFICE-BRANCH GORONTALO">OFFICE-BRANCH GORONTALO</option>
+<option value="OFFICE-BRANCH JAKARTA">OFFICE-BRANCH JAKARTA</option>
+<option value="OFFICE-BRANCH JAMBI">OFFICE-BRANCH JAMBI</option>
+<option value="OFFICE-BRANCH KENDARI">OFFICE-BRANCH KENDARI</option>
+<option value="OFFICE-BRANCH KUPANG">OFFICE-BRANCH KUPANG</option>
+<option value="OFFICE-BRANCH LAMPUNG">OFFICE-BRANCH LAMPUNG</option>
+<option value="OFFICE-BRANCH MAKASSAR">OFFICE-BRANCH MAKASSAR</option>
+<option value="OFFICE-BRANCH MAMUJU">OFFICE-BRANCH MAMUJU</option>
+<option value="OFFICE-BRANCH MANADO">OFFICE-BRANCH MANADO</option>
+<option value="OFFICE-BRANCH MEDAN">OFFICE-BRANCH MEDAN</option>
+<option value="OFFICE-BRANCH MOROWALI">OFFICE-BRANCH MOROWALI</option>
+<option value="OFFICE-BRANCH PADANG">OFFICE-BRANCH PADANG</option>
+<option value="OFFICE-BRANCH PALEMBANG">OFFICE-BRANCH PALEMBANG</option>
+<option value="OFFICE-BRANCH PALOPO">OFFICE-BRANCH PALOPO</option>
+<option value="OFFICE-BRANCH PALU">OFFICE-BRANCH PALU</option>
+<option value="OFFICE-BRANCH PEKANBARU">OFFICE-BRANCH PEKANBARU</option>
+<option value="OFFICE-BRANCH POLEWALI">OFFICE-BRANCH POLEWALI</option>
+<option value="OFFICE-BRANCH PONTIANAK">OFFICE-BRANCH PONTIANAK</option>
+<option value="OFFICE-BRANCH SAMPIT">OFFICE-BRANCH SAMPIT</option>
+<option value="OFFICE-BRANCH SEMARANG">OFFICE-BRANCH SEMARANG</option>
+<option value="OFFICE-BRANCH SENGKANG">OFFICE-BRANCH SENGKANG</option>
+<option value="OFFICE-BRANCH SURABAYA">OFFICE-BRANCH SURABAYA</option>
+<option value="OFFICE-BRANCH TEGAL">OFFICE-BRANCH TEGAL</option>
+<option value="OFFICE-BRANCH TORAJA">OFFICE-BRANCH TORAJA</option>
+<option value="OFFICE-BRANCH YOGYAKARTA">OFFICE-BRANCH YOGYAKARTA</option>
+<option value="OFFICE-CL JAKARTA">OFFICE-CL JAKARTA</option>
+<option value="OFFICE-DDC-MONOTARO">OFFICE-DDC-MONOTARO</option>
+<option value="OFFICE-DISTRIBUTION CENTER JAKARTA">OFFICE-DISTRIBUTION CENTER JAKARTA</option>
+<option value="OFFICE-DISTRIBUTION CENTER MAKASSAR">OFFICE-DISTRIBUTION CENTER MAKASSAR</option>
+<option value="OFFICE-ECS JAKARTA">OFFICE-ECS JAKARTA</option>
+<option value="OFFICE-FAP BALIKPAPAN">OFFICE-FAP BALIKPAPAN</option>
+<option value="OFFICE-HEAD OFFICE JAKARTA">OFFICE-HEAD OFFICE JAKARTA</option>
+<option value="OFFICE-HEAD OFFICE MAKASSAR">OFFICE-HEAD OFFICE MAKASSAR</option>
+<option value="OFFICE-HONDA MAKASSAR">OFFICE-HONDA MAKASSAR</option>
+<option value="OFFICE-HOTEL GRAND SOHO MAKASSAR">OFFICE-HOTEL GRAND SOHO MAKASSAR</option>
+<option value="OFFICE-HUB BANTAENG">OFFICE-HUB BANTAENG</option>
+<option value="OFFICE-HUB BONE">OFFICE-HUB BONE</option>
+<option value="OFFICE-HUB BULUKUMBA">OFFICE-HUB BULUKUMBA</option>
+<option value="OFFICE-HUB CIREBON">OFFICE-HUB CIREBON</option>
+<option value="OFFICE-HUB MATARAM">OFFICE-HUB MATARAM</option>
+<option value="OFFICE-HUB PINRANG">OFFICE-HUB PINRANG</option>
+<option value="OFFICE-HUB POLMAS">OFFICE-HUB POLMAS</option>
+<option value="OFFICE-HUB PURWOKERTO">OFFICE-HUB PURWOKERTO</option>
+<option value="OFFICE-HUB SENGKANG">OFFICE-HUB SENGKANG</option>
+<option value="OFFICE-HUB SIDRAP">OFFICE-HUB SIDRAP</option>
+<option value="OFFICE-HUB SINJAI">OFFICE-HUB SINJAI</option>
+<option value="OFFICE-HUB SOPPENG">OFFICE-HUB SOPPENG</option>
+<option value="OFFICE-HUB TERNATE">OFFICE-HUB TERNATE</option>
+<option value="OFFICE-LESTARI JAYA RAYA SENTOSA">OFFICE-LESTARI JAYA RAYA SENTOSA</option>
+<option value="OFFICE-LESTARI TOUR AND TRAVEL">OFFICE-LESTARI TOUR AND TRAVEL</option>
+<option value="OFFICE-MENTARI JAYA RAYA">OFFICE-MENTARI JAYA RAYA</option>
+<option value="OFFICE-MNJ MAKASSAR">OFFICE-MNJ MAKASSAR</option>
+<option value="OFFICE-MONOTARO CIKARANG">OFFICE-MONOTARO CIKARANG</option>
+<option value="OFFICE-MONOTARO SURABAYA">OFFICE-MONOTARO SURABAYA</option>
+<option value="OFFICE-NDC CIKARANG">OFFICE-NDC CIKARANG</option>
+<option value="OFFICE-PELANGI SUKSES CEMERLANG">OFFICE-PELANGI SUKSES CEMERLANG</option>
+<option value="OFFICE-PENTA VALENT SURABAYA">OFFICE-PENTA VALENT SURABAYA</option>
+<option value="OFFICE-PPG MAKASSAR">OFFICE-PPG MAKASSAR</option>
+<option value="OFFICE-TEMPO MAKASSAR">OFFICE-TEMPO MAKASSAR</option>
+            </select>
+        </div>
+
+        <!-- A04 -->
+        <div class="card">
+            <label class="question-title">A04. Posisi/Jabatan <span class="required">*</span></label>
+            <div class="radio-group">
+                <label class="option-label"><input type="radio" name="A04" value="Staff / Operator" required> Staff / Operator</label>
+                <label class="option-label"><input type="radio" name="A04" value="Supervisor"> Supervisor</label>
+                <label class="option-label"><input type="radio" name="A04" value="Assistant Manager / Manager"> Assistant Manager / Manager</label>
+                <label class="option-label"><input type="radio" name="A04" value="General Manager / Director"> General Manager / Director</label>
+                <label class="option-label"><input type="radio" name="A04" value="Other"> Other</label>
+            </div>
+        </div>
+
+        <!-- B. PENGGUNAAN APLIKASI -->
+        <div class="section-banner">B. PENGGUNAAN APLIKASI</div>
+        <div class="section-desc">Identifikasi aplikasi perusahaan yang Anda gunakan dalam tiga bulan terakhir.</div>
+
+        <!-- B01 -->
+        <div class="card">
+            <label class="question-title">B01. Aplikasi apa saja yang Anda gunakan dalam tiga bulan terakhir? <span class="required">*</span></label>
+            <span class="question-helper">Boleh memilih lebih dari satu.<br>Catatan: Jika memilih "Tidak menggunakan aplikasi tersebut", jangan memilih aplikasi lainnya. (Pilihan di sini otomatis menyinkronkan Gate pada Bagian C).</span>
+            <div class="checkbox-group">
+                <label class="option-label"><input type="checkbox" name="B01" value="LIMA" class="app-check" data-gate="C1" onchange="syncFromB01()"> LIMA</label>
+                <label class="option-label"><input type="checkbox" name="B01" value="S3 V2" class="app-check" data-gate="C2" onchange="syncFromB01()"> S3 V2</label>
+                <label class="option-label"><input type="checkbox" name="B01" value="FAT V1" class="app-check" data-gate="C3" onchange="syncFromB01()"> FAT & Billing V1</label>
+                <label class="option-label"><input type="checkbox" name="B01" value="HCMS" class="app-check" data-gate="C4" onchange="syncFromB01()"> HCMS</label>
+                <label class="option-label"><input type="checkbox" name="B01" value="WMS Ailox" class="app-check" data-gate="C5" onchange="syncFromB01()"> WMS Ailox</label>
+                <label class="option-label"><input type="checkbox" name="B01" value="Tidak menggunakan aplikasi tersebut" id="noneAppCheck" onchange="handleNoneApp()"> Tidak menggunakan aplikasi tersebut</label>
+            </div>
+        </div>
+
+        <!-- B02 -->
+        <div class="card">
+            <label class="question-title">B02. Seberapa sering Anda menggunakan masing-masing aplikasi berikut dalam tiga bulan terakhir? <span class="required">*</span></label>
+            <span class="question-helper">Pilih satu jawaban untuk setiap aplikasi yang pernah digunakan.</span>
+            <div class="grid-wrapper">
+                <table class="freq-grid">
+                    <thead>
+                        <tr>
+                            <th>Aplikasi</th>
+                            <th>Setiap hari kerja</th>
+                            <th>3–4 kali seminggu</th>
+                            <th>1–2 kali seminggu</th>
+                            <th>Beberapa kali sebulan</th>
+                            <th>Kurang dari sekali sebulan</th>
+                            <th>Tidak menggunakan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>LIMA</td>
+                            <td><input type="radio" name="B02_LIMA" value="Setiap hari kerja"></td>
+                            <td><input type="radio" name="B02_LIMA" value="3-4 kali seminggu"></td>
+                            <td><input type="radio" name="B02_LIMA" value="1-2 kali seminggu"></td>
+                            <td><input type="radio" name="B02_LIMA" value="Beberapa kali sebulan"></td>
+                            <td><input type="radio" name="B02_LIMA" value="Kurang dari sekali sebulan"></td>
+                            <td><input type="radio" name="B02_LIMA" value="Tidak menggunakan"></td>
+                        </tr>
+                        <tr>
+                            <td>S3 V2</td>
+                            <td><input type="radio" name="B02_S3V2" value="Setiap hari kerja"></td>
+                            <td><input type="radio" name="B02_S3V2" value="3-4 kali seminggu"></td>
+                            <td><input type="radio" name="B02_S3V2" value="1-2 kali seminggu"></td>
+                            <td><input type="radio" name="B02_S3V2" value="Beberapa kali sebulan"></td>
+                            <td><input type="radio" name="B02_S3V2" value="Kurang dari sekali sebulan"></td>
+                            <td><input type="radio" name="B02_S3V2" value="Tidak menggunakan"></td>
+                        </tr>
+                        <tr>
+                            <td>FAT & Billing V1</td>
+                            <td><input type="radio" name="B02_FATV1" value="Setiap hari kerja"></td>
+                            <td><input type="radio" name="B02_FATV1" value="3-4 kali seminggu"></td>
+                            <td><input type="radio" name="B02_FATV1" value="1-2 kali seminggu"></td>
+                            <td><input type="radio" name="B02_FATV1" value="Beberapa kali sebulan"></td>
+                            <td><input type="radio" name="B02_FATV1" value="Kurang dari sekali sebulan"></td>
+                            <td><input type="radio" name="B02_FATV1" value="Tidak menggunakan"></td>
+                        </tr>
+                        <tr>
+                            <td>HCMS</td>
+                            <td><input type="radio" name="B02_HCMS" value="Setiap hari kerja"></td>
+                            <td><input type="radio" name="B02_HCMS" value="3-4 kali seminggu"></td>
+                            <td><input type="radio" name="B02_HCMS" value="1-2 kali seminggu"></td>
+                            <td><input type="radio" name="B02_HCMS" value="Beberapa kali sebulan"></td>
+                            <td><input type="radio" name="B02_HCMS" value="Kurang dari sekali sebulan"></td>
+                            <td><input type="radio" name="B02_HCMS" value="Tidak menggunakan"></td>
+                        </tr>
+                        <tr>
+                            <td>WMS Ailox</td>
+                            <td><input type="radio" name="B02_WMSAilox" value="Setiap hari kerja"></td>
+                            <td><input type="radio" name="B02_WMSAilox" value="3-4 kali seminggu"></td>
+                            <td><input type="radio" name="B02_WMSAilox" value="1-2 kali seminggu"></td>
+                            <td><input type="radio" name="B02_WMSAilox" value="Beberapa kali sebulan"></td>
+                            <td><input type="radio" name="B02_WMSAilox" value="Kurang dari sekali sebulan"></td>
+                            <td><input type="radio" name="B02_WMSAilox" value="Tidak menggunakan"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- B03 -->
+        <div class="card">
+            <label class="question-title">B03. Dari aplikasi yang Anda gunakan, aplikasi mana yang paling sering Anda gunakan untuk mendukung pekerjaan?</label>
+            <div class="radio-group">
+                <label class="option-label"><input type="radio" name="B03" value="LIMA"> LIMA</label>
+                <label class="option-label"><input type="radio" name="B03" value="S3 V2"> S3 V2</label>
+                <label class="option-label"><input type="radio" name="B03" value="FAT V1"> FAT & Billing V1</label>
+                <label class="option-label"><input type="radio" name="B03" value="HCMS"> HCMS</label>
+                <label class="option-label"><input type="radio" name="B03" value="WMS Ailox"> WMS Ailox</label>
+            </div>
+        </div>
+
+        <!-- C. KUALITAS APLIKASI -->
+        <div class="section-banner">C. KUALITAS APLIKASI</div>
+        <div class="section-desc">
+            <strong>Petunjuk pengisian:</strong><br>
+            Bagian ini menilai kualitas setiap aplikasi secara terpisah. Responden hanya mengisi bagian aplikasi yang digunakan dalam tiga bulan terakhir. Gunakan skala 1–5 atau N/A berdasarkan pengalaman Anda menggunakan aplikasi tersebut.
+        </div>
+
+        
+    <!-- C1. Kualitas Aplikasi LIMA -->
+    <div class="sub-section-header">C1. Kualitas Aplikasi LIMA</div>
+    <div class="card">
+        <label class="question-title">Gate C1: Apakah Anda menggunakan LIMA dalam tiga bulan terakhir? <span class="required">*</span></label>
+        <span class="question-helper">Ya &rarr; isi C1. Tidak &rarr; lewati C1.</span>
+        <div class="radio-group">
+            <label class="option-label"><input type="radio" name="Gate_C1" value="Ya" onchange="toggleAppSection('C1', true)"> Ya (Isi penilaian kualitas LIMA)</label>
+            <label class="option-label"><input type="radio" name="Gate_C1" value="Tidak" checked onchange="toggleAppSection('C1', false)"> Tidak (Lewati C1)</label>
+        </div>
+    </div>
+    <div id="container_C1" class="hidden">
+    
+        <div class="card">
+            <div class="dimension-header">LIMA — Security & Access</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ1</span> LIMA memiliki keamanan yang memadai untuk melindungi informasi perusahaan.</td>
+                            <td><input type="radio" name="C1_AQ1" value="1"></td>
+                            <td><input type="radio" name="C1_AQ1" value="2"></td>
+                            <td><input type="radio" name="C1_AQ1" value="3"></td>
+                            <td><input type="radio" name="C1_AQ1" value="4"></td>
+                            <td><input type="radio" name="C1_AQ1" value="5"></td>
+                            <td><input type="radio" name="C1_AQ1" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ2</span> Hak akses LIMA telah sesuai dengan tanggung jawab pekerjaan saya.</td>
+                            <td><input type="radio" name="C1_AQ2" value="1"></td>
+                            <td><input type="radio" name="C1_AQ2" value="2"></td>
+                            <td><input type="radio" name="C1_AQ2" value="3"></td>
+                            <td><input type="radio" name="C1_AQ2" value="4"></td>
+                            <td><input type="radio" name="C1_AQ2" value="5"></td>
+                            <td><input type="radio" name="C1_AQ2" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ3</span> Data perusahaan terlindungi dari akses pihak yang tidak berwenang melalui LIMA.</td>
+                            <td><input type="radio" name="C1_AQ3" value="1"></td>
+                            <td><input type="radio" name="C1_AQ3" value="2"></td>
+                            <td><input type="radio" name="C1_AQ3" value="3"></td>
+                            <td><input type="radio" name="C1_AQ3" value="4"></td>
+                            <td><input type="radio" name="C1_AQ3" value="5"></td>
+                            <td><input type="radio" name="C1_AQ3" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="dimension-header">LIMA — System Reliability</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ4</span> LIMA dapat diakses ketika dibutuhkan untuk pekerjaan.</td>
+                            <td><input type="radio" name="C1_AQ4" value="1"></td>
+                            <td><input type="radio" name="C1_AQ4" value="2"></td>
+                            <td><input type="radio" name="C1_AQ4" value="3"></td>
+                            <td><input type="radio" name="C1_AQ4" value="4"></td>
+                            <td><input type="radio" name="C1_AQ4" value="5"></td>
+                            <td><input type="radio" name="C1_AQ4" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ5</span> LIMA jarang mengalami kesalahan atau gangguan yang menghambat pekerjaan.</td>
+                            <td><input type="radio" name="C1_AQ5" value="1"></td>
+                            <td><input type="radio" name="C1_AQ5" value="2"></td>
+                            <td><input type="radio" name="C1_AQ5" value="3"></td>
+                            <td><input type="radio" name="C1_AQ5" value="4"></td>
+                            <td><input type="radio" name="C1_AQ5" value="5"></td>
+                            <td><input type="radio" name="C1_AQ5" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ6</span> LIMA dapat beroperasi secara konsisten.</td>
+                            <td><input type="radio" name="C1_AQ6" value="1"></td>
+                            <td><input type="radio" name="C1_AQ6" value="2"></td>
+                            <td><input type="radio" name="C1_AQ6" value="3"></td>
+                            <td><input type="radio" name="C1_AQ6" value="4"></td>
+                            <td><input type="radio" name="C1_AQ6" value="5"></td>
+                            <td><input type="radio" name="C1_AQ6" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="dimension-header">LIMA — Data Quality</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ7</span> Data yang tersedia di LIMA sesuai dengan kondisi atau transaksi sebenarnya.</td>
+                            <td><input type="radio" name="C1_AQ7" value="1"></td>
+                            <td><input type="radio" name="C1_AQ7" value="2"></td>
+                            <td><input type="radio" name="C1_AQ7" value="3"></td>
+                            <td><input type="radio" name="C1_AQ7" value="4"></td>
+                            <td><input type="radio" name="C1_AQ7" value="5"></td>
+                            <td><input type="radio" name="C1_AQ7" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ8</span> Data LIMA konsisten pada proses atau modul yang saling berkaitan.</td>
+                            <td><input type="radio" name="C1_AQ8" value="1"></td>
+                            <td><input type="radio" name="C1_AQ8" value="2"></td>
+                            <td><input type="radio" name="C1_AQ8" value="3"></td>
+                            <td><input type="radio" name="C1_AQ8" value="4"></td>
+                            <td><input type="radio" name="C1_AQ8" value="5"></td>
+                            <td><input type="radio" name="C1_AQ8" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ9</span> Informasi yang disediakan LIMA sesuai dengan kebutuhan pekerjaan saya.</td>
+                            <td><input type="radio" name="C1_AQ9" value="1"></td>
+                            <td><input type="radio" name="C1_AQ9" value="2"></td>
+                            <td><input type="radio" name="C1_AQ9" value="3"></td>
+                            <td><input type="radio" name="C1_AQ9" value="4"></td>
+                            <td><input type="radio" name="C1_AQ9" value="5"></td>
+                            <td><input type="radio" name="C1_AQ9" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="dimension-header">LIMA — Performance</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ10</span> LIMA memberikan respons dengan cepat ketika digunakan.</td>
+                            <td><input type="radio" name="C1_AQ10" value="1"></td>
+                            <td><input type="radio" name="C1_AQ10" value="2"></td>
+                            <td><input type="radio" name="C1_AQ10" value="3"></td>
+                            <td><input type="radio" name="C1_AQ10" value="4"></td>
+                            <td><input type="radio" name="C1_AQ10" value="5"></td>
+                            <td><input type="radio" name="C1_AQ10" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ11</span> Proses penyimpanan dan pengolahan data LIMA berlangsung dalam waktu yang wajar.</td>
+                            <td><input type="radio" name="C1_AQ11" value="1"></td>
+                            <td><input type="radio" name="C1_AQ11" value="2"></td>
+                            <td><input type="radio" name="C1_AQ11" value="3"></td>
+                            <td><input type="radio" name="C1_AQ11" value="4"></td>
+                            <td><input type="radio" name="C1_AQ11" value="5"></td>
+                            <td><input type="radio" name="C1_AQ11" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ12</span> Pembuatan laporan melalui LIMA berlangsung dengan cepat.</td>
+                            <td><input type="radio" name="C1_AQ12" value="1"></td>
+                            <td><input type="radio" name="C1_AQ12" value="2"></td>
+                            <td><input type="radio" name="C1_AQ12" value="3"></td>
+                            <td><input type="radio" name="C1_AQ12" value="4"></td>
+                            <td><input type="radio" name="C1_AQ12" value="5"></td>
+                            <td><input type="radio" name="C1_AQ12" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="dimension-header">LIMA — Usability</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ13</span> LIMA mudah dipelajari dan digunakan.</td>
+                            <td><input type="radio" name="C1_AQ13" value="1"></td>
+                            <td><input type="radio" name="C1_AQ13" value="2"></td>
+                            <td><input type="radio" name="C1_AQ13" value="3"></td>
+                            <td><input type="radio" name="C1_AQ13" value="4"></td>
+                            <td><input type="radio" name="C1_AQ13" value="5"></td>
+                            <td><input type="radio" name="C1_AQ13" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ14</span> Menu dan fitur LIMA mudah dipahami.</td>
+                            <td><input type="radio" name="C1_AQ14" value="1"></td>
+                            <td><input type="radio" name="C1_AQ14" value="2"></td>
+                            <td><input type="radio" name="C1_AQ14" value="3"></td>
+                            <td><input type="radio" name="C1_AQ14" value="4"></td>
+                            <td><input type="radio" name="C1_AQ14" value="5"></td>
+                            <td><input type="radio" name="C1_AQ14" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ15</span> LIMA membantu saya menyelesaikan pekerjaan secara efektif.</td>
+                            <td><input type="radio" name="C1_AQ15" value="1"></td>
+                            <td><input type="radio" name="C1_AQ15" value="2"></td>
+                            <td><input type="radio" name="C1_AQ15" value="3"></td>
+                            <td><input type="radio" name="C1_AQ15" value="4"></td>
+                            <td><input type="radio" name="C1_AQ15" value="5"></td>
+                            <td><input type="radio" name="C1_AQ15" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+    <div id="notice_C1" class="branch-notice">
+        ℹ️ Bagian <strong>C1 (Kualitas Aplikasi LIMA)</strong> saat ini dilewati. Pilih <strong>"Ya"</strong> pada Gate C1 di atas (atau centang LIMA di B01) untuk menampilkan butir penilaian.
+    </div>
+    
+
+    <!-- C2. Kualitas Aplikasi S3 V2 -->
+    <div class="sub-section-header">C2. Kualitas Aplikasi S3 V2</div>
+    <div class="card">
+        <label class="question-title">Gate C2: Apakah Anda menggunakan S3 V2 dalam tiga bulan terakhir? <span class="required">*</span></label>
+        <span class="question-helper">Ya &rarr; isi C2. Tidak &rarr; lewati C2.</span>
+        <div class="radio-group">
+            <label class="option-label"><input type="radio" name="Gate_C2" value="Ya" onchange="toggleAppSection('C2', true)"> Ya (Isi penilaian kualitas S3 V2)</label>
+            <label class="option-label"><input type="radio" name="Gate_C2" value="Tidak" checked onchange="toggleAppSection('C2', false)"> Tidak (Lewati C2)</label>
+        </div>
+    </div>
+    <div id="container_C2" class="hidden">
+    
+        <div class="card">
+            <div class="dimension-header">S3 V2 — Security & Access</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ1</span> S3 V2 memiliki keamanan yang memadai untuk melindungi informasi perusahaan.</td>
+                            <td><input type="radio" name="C2_AQ1" value="1"></td>
+                            <td><input type="radio" name="C2_AQ1" value="2"></td>
+                            <td><input type="radio" name="C2_AQ1" value="3"></td>
+                            <td><input type="radio" name="C2_AQ1" value="4"></td>
+                            <td><input type="radio" name="C2_AQ1" value="5"></td>
+                            <td><input type="radio" name="C2_AQ1" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ2</span> Hak akses S3 V2 telah sesuai dengan tanggung jawab pekerjaan saya.</td>
+                            <td><input type="radio" name="C2_AQ2" value="1"></td>
+                            <td><input type="radio" name="C2_AQ2" value="2"></td>
+                            <td><input type="radio" name="C2_AQ2" value="3"></td>
+                            <td><input type="radio" name="C2_AQ2" value="4"></td>
+                            <td><input type="radio" name="C2_AQ2" value="5"></td>
+                            <td><input type="radio" name="C2_AQ2" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ3</span> Data perusahaan terlindungi dari akses pihak yang tidak berwenang melalui S3 V2.</td>
+                            <td><input type="radio" name="C2_AQ3" value="1"></td>
+                            <td><input type="radio" name="C2_AQ3" value="2"></td>
+                            <td><input type="radio" name="C2_AQ3" value="3"></td>
+                            <td><input type="radio" name="C2_AQ3" value="4"></td>
+                            <td><input type="radio" name="C2_AQ3" value="5"></td>
+                            <td><input type="radio" name="C2_AQ3" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="dimension-header">S3 V2 — System Reliability</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ4</span> S3 V2 dapat diakses ketika dibutuhkan untuk pekerjaan.</td>
+                            <td><input type="radio" name="C2_AQ4" value="1"></td>
+                            <td><input type="radio" name="C2_AQ4" value="2"></td>
+                            <td><input type="radio" name="C2_AQ4" value="3"></td>
+                            <td><input type="radio" name="C2_AQ4" value="4"></td>
+                            <td><input type="radio" name="C2_AQ4" value="5"></td>
+                            <td><input type="radio" name="C2_AQ4" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ5</span> S3 V2 jarang mengalami kesalahan atau gangguan yang menghambat pekerjaan.</td>
+                            <td><input type="radio" name="C2_AQ5" value="1"></td>
+                            <td><input type="radio" name="C2_AQ5" value="2"></td>
+                            <td><input type="radio" name="C2_AQ5" value="3"></td>
+                            <td><input type="radio" name="C2_AQ5" value="4"></td>
+                            <td><input type="radio" name="C2_AQ5" value="5"></td>
+                            <td><input type="radio" name="C2_AQ5" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ6</span> S3 V2 dapat beroperasi secara konsisten.</td>
+                            <td><input type="radio" name="C2_AQ6" value="1"></td>
+                            <td><input type="radio" name="C2_AQ6" value="2"></td>
+                            <td><input type="radio" name="C2_AQ6" value="3"></td>
+                            <td><input type="radio" name="C2_AQ6" value="4"></td>
+                            <td><input type="radio" name="C2_AQ6" value="5"></td>
+                            <td><input type="radio" name="C2_AQ6" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="dimension-header">S3 V2 — Data Quality</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ7</span> Data yang tersedia di S3 V2 sesuai dengan kondisi atau transaksi sebenarnya.</td>
+                            <td><input type="radio" name="C2_AQ7" value="1"></td>
+                            <td><input type="radio" name="C2_AQ7" value="2"></td>
+                            <td><input type="radio" name="C2_AQ7" value="3"></td>
+                            <td><input type="radio" name="C2_AQ7" value="4"></td>
+                            <td><input type="radio" name="C2_AQ7" value="5"></td>
+                            <td><input type="radio" name="C2_AQ7" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ8</span> Data S3 V2 konsisten pada proses atau modul yang saling berkaitan.</td>
+                            <td><input type="radio" name="C2_AQ8" value="1"></td>
+                            <td><input type="radio" name="C2_AQ8" value="2"></td>
+                            <td><input type="radio" name="C2_AQ8" value="3"></td>
+                            <td><input type="radio" name="C2_AQ8" value="4"></td>
+                            <td><input type="radio" name="C2_AQ8" value="5"></td>
+                            <td><input type="radio" name="C2_AQ8" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ9</span> Informasi yang disediakan S3 V2 sesuai dengan kebutuhan pekerjaan saya.</td>
+                            <td><input type="radio" name="C2_AQ9" value="1"></td>
+                            <td><input type="radio" name="C2_AQ9" value="2"></td>
+                            <td><input type="radio" name="C2_AQ9" value="3"></td>
+                            <td><input type="radio" name="C2_AQ9" value="4"></td>
+                            <td><input type="radio" name="C2_AQ9" value="5"></td>
+                            <td><input type="radio" name="C2_AQ9" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="dimension-header">S3 V2 — Performance</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ10</span> S3 V2 memberikan respons dengan cepat ketika digunakan.</td>
+                            <td><input type="radio" name="C2_AQ10" value="1"></td>
+                            <td><input type="radio" name="C2_AQ10" value="2"></td>
+                            <td><input type="radio" name="C2_AQ10" value="3"></td>
+                            <td><input type="radio" name="C2_AQ10" value="4"></td>
+                            <td><input type="radio" name="C2_AQ10" value="5"></td>
+                            <td><input type="radio" name="C2_AQ10" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ11</span> Proses penyimpanan dan pengolahan data S3 V2 berlangsung dalam waktu yang wajar.</td>
+                            <td><input type="radio" name="C2_AQ11" value="1"></td>
+                            <td><input type="radio" name="C2_AQ11" value="2"></td>
+                            <td><input type="radio" name="C2_AQ11" value="3"></td>
+                            <td><input type="radio" name="C2_AQ11" value="4"></td>
+                            <td><input type="radio" name="C2_AQ11" value="5"></td>
+                            <td><input type="radio" name="C2_AQ11" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ12</span> Pembuatan laporan melalui S3 V2 berlangsung dengan cepat.</td>
+                            <td><input type="radio" name="C2_AQ12" value="1"></td>
+                            <td><input type="radio" name="C2_AQ12" value="2"></td>
+                            <td><input type="radio" name="C2_AQ12" value="3"></td>
+                            <td><input type="radio" name="C2_AQ12" value="4"></td>
+                            <td><input type="radio" name="C2_AQ12" value="5"></td>
+                            <td><input type="radio" name="C2_AQ12" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="dimension-header">S3 V2 — Usability</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ13</span> S3 V2 mudah dipelajari dan digunakan.</td>
+                            <td><input type="radio" name="C2_AQ13" value="1"></td>
+                            <td><input type="radio" name="C2_AQ13" value="2"></td>
+                            <td><input type="radio" name="C2_AQ13" value="3"></td>
+                            <td><input type="radio" name="C2_AQ13" value="4"></td>
+                            <td><input type="radio" name="C2_AQ13" value="5"></td>
+                            <td><input type="radio" name="C2_AQ13" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ14</span> Menu dan fitur S3 V2 mudah dipahami.</td>
+                            <td><input type="radio" name="C2_AQ14" value="1"></td>
+                            <td><input type="radio" name="C2_AQ14" value="2"></td>
+                            <td><input type="radio" name="C2_AQ14" value="3"></td>
+                            <td><input type="radio" name="C2_AQ14" value="4"></td>
+                            <td><input type="radio" name="C2_AQ14" value="5"></td>
+                            <td><input type="radio" name="C2_AQ14" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ15</span> S3 V2 membantu saya menyelesaikan pekerjaan secara efektif.</td>
+                            <td><input type="radio" name="C2_AQ15" value="1"></td>
+                            <td><input type="radio" name="C2_AQ15" value="2"></td>
+                            <td><input type="radio" name="C2_AQ15" value="3"></td>
+                            <td><input type="radio" name="C2_AQ15" value="4"></td>
+                            <td><input type="radio" name="C2_AQ15" value="5"></td>
+                            <td><input type="radio" name="C2_AQ15" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+    <div id="notice_C2" class="branch-notice">
+        ℹ️ Bagian <strong>C2 (Kualitas Aplikasi S3 V2)</strong> saat ini dilewati. Pilih <strong>"Ya"</strong> pada Gate C2 di atas (atau centang S3 V2 di B01) untuk menampilkan butir penilaian.
+    </div>
+    
+
+    <!-- C3. Kualitas Aplikasi FAT & Billing V1 -->
+    <div class="sub-section-header">C3. Kualitas Aplikasi FAT & Billing V1</div>
+    <div class="card">
+        <label class="question-title">Gate C3: Apakah Anda menggunakan FAT & Billing V1 dalam tiga bulan terakhir? <span class="required">*</span></label>
+        <span class="question-helper">Ya &rarr; isi C3. Tidak &rarr; lewati C3.</span>
+        <div class="radio-group">
+            <label class="option-label"><input type="radio" name="Gate_C3" value="Ya" onchange="toggleAppSection('C3', true)"> Ya (Isi penilaian kualitas FAT & Billing V1)</label>
+            <label class="option-label"><input type="radio" name="Gate_C3" value="Tidak" checked onchange="toggleAppSection('C3', false)"> Tidak (Lewati C3)</label>
+        </div>
+    </div>
+    <div id="container_C3" class="hidden">
+    
+        <div class="card">
+            <div class="dimension-header">FAT & Billing V1 — Security & Access</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ1</span> FAT & Billing V1 memiliki keamanan yang memadai untuk melindungi informasi perusahaan.</td>
+                            <td><input type="radio" name="C3_AQ1" value="1"></td>
+                            <td><input type="radio" name="C3_AQ1" value="2"></td>
+                            <td><input type="radio" name="C3_AQ1" value="3"></td>
+                            <td><input type="radio" name="C3_AQ1" value="4"></td>
+                            <td><input type="radio" name="C3_AQ1" value="5"></td>
+                            <td><input type="radio" name="C3_AQ1" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ2</span> Hak akses FAT & Billing V1 telah sesuai dengan tanggung jawab pekerjaan saya.</td>
+                            <td><input type="radio" name="C3_AQ2" value="1"></td>
+                            <td><input type="radio" name="C3_AQ2" value="2"></td>
+                            <td><input type="radio" name="C3_AQ2" value="3"></td>
+                            <td><input type="radio" name="C3_AQ2" value="4"></td>
+                            <td><input type="radio" name="C3_AQ2" value="5"></td>
+                            <td><input type="radio" name="C3_AQ2" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ3</span> Data perusahaan terlindungi dari akses pihak yang tidak berwenang melalui FAT & Billing V1.</td>
+                            <td><input type="radio" name="C3_AQ3" value="1"></td>
+                            <td><input type="radio" name="C3_AQ3" value="2"></td>
+                            <td><input type="radio" name="C3_AQ3" value="3"></td>
+                            <td><input type="radio" name="C3_AQ3" value="4"></td>
+                            <td><input type="radio" name="C3_AQ3" value="5"></td>
+                            <td><input type="radio" name="C3_AQ3" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="dimension-header">FAT & Billing V1 — System Reliability</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ4</span> FAT V1 dapat diakses ketika dibutuhkan untuk pekerjaan.</td>
+                            <td><input type="radio" name="C3_AQ4" value="1"></td>
+                            <td><input type="radio" name="C3_AQ4" value="2"></td>
+                            <td><input type="radio" name="C3_AQ4" value="3"></td>
+                            <td><input type="radio" name="C3_AQ4" value="4"></td>
+                            <td><input type="radio" name="C3_AQ4" value="5"></td>
+                            <td><input type="radio" name="C3_AQ4" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ5</span> FAT & Billing V1 jarang mengalami kesalahan atau gangguan yang menghambat pekerjaan.</td>
+                            <td><input type="radio" name="C3_AQ5" value="1"></td>
+                            <td><input type="radio" name="C3_AQ5" value="2"></td>
+                            <td><input type="radio" name="C3_AQ5" value="3"></td>
+                            <td><input type="radio" name="C3_AQ5" value="4"></td>
+                            <td><input type="radio" name="C3_AQ5" value="5"></td>
+                            <td><input type="radio" name="C3_AQ5" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ6</span> FAT & Billing V1 dapat beroperasi secara konsisten.</td>
+                            <td><input type="radio" name="C3_AQ6" value="1"></td>
+                            <td><input type="radio" name="C3_AQ6" value="2"></td>
+                            <td><input type="radio" name="C3_AQ6" value="3"></td>
+                            <td><input type="radio" name="C3_AQ6" value="4"></td>
+                            <td><input type="radio" name="C3_AQ6" value="5"></td>
+                            <td><input type="radio" name="C3_AQ6" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="dimension-header">FAT & Billing V1 — Data Quality</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ7</span> Data yang tersedia di FAT & Billing V1 sesuai dengan kondisi atau transaksi sebenarnya.</td>
+                            <td><input type="radio" name="C3_AQ7" value="1"></td>
+                            <td><input type="radio" name="C3_AQ7" value="2"></td>
+                            <td><input type="radio" name="C3_AQ7" value="3"></td>
+                            <td><input type="radio" name="C3_AQ7" value="4"></td>
+                            <td><input type="radio" name="C3_AQ7" value="5"></td>
+                            <td><input type="radio" name="C3_AQ7" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ8</span> Data FAT & Billing V1 konsisten pada proses atau modul yang saling berkaitan.</td>
+                            <td><input type="radio" name="C3_AQ8" value="1"></td>
+                            <td><input type="radio" name="C3_AQ8" value="2"></td>
+                            <td><input type="radio" name="C3_AQ8" value="3"></td>
+                            <td><input type="radio" name="C3_AQ8" value="4"></td>
+                            <td><input type="radio" name="C3_AQ8" value="5"></td>
+                            <td><input type="radio" name="C3_AQ8" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ9</span> Informasi yang disediakan FAT & Billing V1 sesuai dengan kebutuhan pekerjaan saya.</td>
+                            <td><input type="radio" name="C3_AQ9" value="1"></td>
+                            <td><input type="radio" name="C3_AQ9" value="2"></td>
+                            <td><input type="radio" name="C3_AQ9" value="3"></td>
+                            <td><input type="radio" name="C3_AQ9" value="4"></td>
+                            <td><input type="radio" name="C3_AQ9" value="5"></td>
+                            <td><input type="radio" name="C3_AQ9" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="dimension-header">FAT & Billing V1 — Performance</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ10</span> FAT & Billing V1 memberikan respons dengan cepat ketika digunakan.</td>
+                            <td><input type="radio" name="C3_AQ10" value="1"></td>
+                            <td><input type="radio" name="C3_AQ10" value="2"></td>
+                            <td><input type="radio" name="C3_AQ10" value="3"></td>
+                            <td><input type="radio" name="C3_AQ10" value="4"></td>
+                            <td><input type="radio" name="C3_AQ10" value="5"></td>
+                            <td><input type="radio" name="C3_AQ10" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ11</span> Proses penyimpanan dan pengolahan data FAT & Billing V1 berlangsung dalam waktu yang wajar.</td>
+                            <td><input type="radio" name="C3_AQ11" value="1"></td>
+                            <td><input type="radio" name="C3_AQ11" value="2"></td>
+                            <td><input type="radio" name="C3_AQ11" value="3"></td>
+                            <td><input type="radio" name="C3_AQ11" value="4"></td>
+                            <td><input type="radio" name="C3_AQ11" value="5"></td>
+                            <td><input type="radio" name="C3_AQ11" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ12</span> Pembuatan laporan melalui FAT & Billing V1 berlangsung dengan cepat.</td>
+                            <td><input type="radio" name="C3_AQ12" value="1"></td>
+                            <td><input type="radio" name="C3_AQ12" value="2"></td>
+                            <td><input type="radio" name="C3_AQ12" value="3"></td>
+                            <td><input type="radio" name="C3_AQ12" value="4"></td>
+                            <td><input type="radio" name="C3_AQ12" value="5"></td>
+                            <td><input type="radio" name="C3_AQ12" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="dimension-header">FAT & Billing V1 — Usability</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ13</span> FAT & Billing V1 mudah dipelajari dan digunakan.</td>
+                            <td><input type="radio" name="C3_AQ13" value="1"></td>
+                            <td><input type="radio" name="C3_AQ13" value="2"></td>
+                            <td><input type="radio" name="C3_AQ13" value="3"></td>
+                            <td><input type="radio" name="C3_AQ13" value="4"></td>
+                            <td><input type="radio" name="C3_AQ13" value="5"></td>
+                            <td><input type="radio" name="C3_AQ13" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ14</span> Menu dan fitur FAT & Billing V1 mudah dipahami.</td>
+                            <td><input type="radio" name="C3_AQ14" value="1"></td>
+                            <td><input type="radio" name="C3_AQ14" value="2"></td>
+                            <td><input type="radio" name="C3_AQ14" value="3"></td>
+                            <td><input type="radio" name="C3_AQ14" value="4"></td>
+                            <td><input type="radio" name="C3_AQ14" value="5"></td>
+                            <td><input type="radio" name="C3_AQ14" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ15</span> FAT & Billing V1 membantu saya menyelesaikan pekerjaan secara efektif.</td>
+                            <td><input type="radio" name="C3_AQ15" value="1"></td>
+                            <td><input type="radio" name="C3_AQ15" value="2"></td>
+                            <td><input type="radio" name="C3_AQ15" value="3"></td>
+                            <td><input type="radio" name="C3_AQ15" value="4"></td>
+                            <td><input type="radio" name="C3_AQ15" value="5"></td>
+                            <td><input type="radio" name="C3_AQ15" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+    <div id="notice_C3" class="branch-notice">
+        ℹ️ Bagian <strong>C3 (Kualitas Aplikasi FAT & Billing V1)</strong> saat ini dilewati. Pilih <strong>"Ya"</strong> pada Gate C3 di atas (atau centang FAT & Billing V1 di B01) untuk menampilkan butir penilaian.
+    </div>
+    
+
+    <!-- C4. Kualitas Aplikasi HCMS -->
+    <div class="sub-section-header">C4. Kualitas Aplikasi HCMS</div>
+    <div class="card">
+        <label class="question-title">Gate C4: Apakah Anda menggunakan HCMS dalam tiga bulan terakhir? <span class="required">*</span></label>
+        <span class="question-helper">Ya &rarr; isi C4. Tidak &rarr; lewati C4.</span>
+        <div class="radio-group">
+            <label class="option-label"><input type="radio" name="Gate_C4" value="Ya" onchange="toggleAppSection('C4', true)"> Ya (Isi penilaian kualitas HCMS)</label>
+            <label class="option-label"><input type="radio" name="Gate_C4" value="Tidak" checked onchange="toggleAppSection('C4', false)"> Tidak (Lewati C4)</label>
+        </div>
+    </div>
+    <div id="container_C4" class="hidden">
+    
+        <div class="card">
+            <div class="dimension-header">HCMS — Security & Access</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ1</span> HCMS memiliki keamanan yang memadai untuk melindungi informasi perusahaan.</td>
+                            <td><input type="radio" name="C4_AQ1" value="1"></td>
+                            <td><input type="radio" name="C4_AQ1" value="2"></td>
+                            <td><input type="radio" name="C4_AQ1" value="3"></td>
+                            <td><input type="radio" name="C4_AQ1" value="4"></td>
+                            <td><input type="radio" name="C4_AQ1" value="5"></td>
+                            <td><input type="radio" name="C4_AQ1" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ2</span> Hak akses HCMS telah sesuai dengan tanggung jawab pekerjaan saya.</td>
+                            <td><input type="radio" name="C4_AQ2" value="1"></td>
+                            <td><input type="radio" name="C4_AQ2" value="2"></td>
+                            <td><input type="radio" name="C4_AQ2" value="3"></td>
+                            <td><input type="radio" name="C4_AQ2" value="4"></td>
+                            <td><input type="radio" name="C4_AQ2" value="5"></td>
+                            <td><input type="radio" name="C4_AQ2" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ3</span> Data perusahaan terlindungi dari akses pihak yang tidak berwenang melalui HCMS.</td>
+                            <td><input type="radio" name="C4_AQ3" value="1"></td>
+                            <td><input type="radio" name="C4_AQ3" value="2"></td>
+                            <td><input type="radio" name="C4_AQ3" value="3"></td>
+                            <td><input type="radio" name="C4_AQ3" value="4"></td>
+                            <td><input type="radio" name="C4_AQ3" value="5"></td>
+                            <td><input type="radio" name="C4_AQ3" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="dimension-header">HCMS — System Reliability</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ4</span> HCMS dapat diakses ketika dibutuhkan untuk pekerjaan.</td>
+                            <td><input type="radio" name="C4_AQ4" value="1"></td>
+                            <td><input type="radio" name="C4_AQ4" value="2"></td>
+                            <td><input type="radio" name="C4_AQ4" value="3"></td>
+                            <td><input type="radio" name="C4_AQ4" value="4"></td>
+                            <td><input type="radio" name="C4_AQ4" value="5"></td>
+                            <td><input type="radio" name="C4_AQ4" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ5</span> HCMS jarang mengalami kesalahan atau gangguan yang menghambat pekerjaan.</td>
+                            <td><input type="radio" name="C4_AQ5" value="1"></td>
+                            <td><input type="radio" name="C4_AQ5" value="2"></td>
+                            <td><input type="radio" name="C4_AQ5" value="3"></td>
+                            <td><input type="radio" name="C4_AQ5" value="4"></td>
+                            <td><input type="radio" name="C4_AQ5" value="5"></td>
+                            <td><input type="radio" name="C4_AQ5" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ6</span> HCMS dapat beroperasi secara konsisten.</td>
+                            <td><input type="radio" name="C4_AQ6" value="1"></td>
+                            <td><input type="radio" name="C4_AQ6" value="2"></td>
+                            <td><input type="radio" name="C4_AQ6" value="3"></td>
+                            <td><input type="radio" name="C4_AQ6" value="4"></td>
+                            <td><input type="radio" name="C4_AQ6" value="5"></td>
+                            <td><input type="radio" name="C4_AQ6" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="dimension-header">HCMS — Data Quality</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ7</span> Data yang tersedia di HCMS sesuai dengan kondisi atau transaksi sebenarnya.</td>
+                            <td><input type="radio" name="C4_AQ7" value="1"></td>
+                            <td><input type="radio" name="C4_AQ7" value="2"></td>
+                            <td><input type="radio" name="C4_AQ7" value="3"></td>
+                            <td><input type="radio" name="C4_AQ7" value="4"></td>
+                            <td><input type="radio" name="C4_AQ7" value="5"></td>
+                            <td><input type="radio" name="C4_AQ7" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ8</span> Data HCMS konsisten pada proses atau modul yang saling berkaitan.</td>
+                            <td><input type="radio" name="C4_AQ8" value="1"></td>
+                            <td><input type="radio" name="C4_AQ8" value="2"></td>
+                            <td><input type="radio" name="C4_AQ8" value="3"></td>
+                            <td><input type="radio" name="C4_AQ8" value="4"></td>
+                            <td><input type="radio" name="C4_AQ8" value="5"></td>
+                            <td><input type="radio" name="C4_AQ8" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ9</span> Informasi yang disediakan HCMS sesuai dengan kebutuhan pekerjaan saya.</td>
+                            <td><input type="radio" name="C4_AQ9" value="1"></td>
+                            <td><input type="radio" name="C4_AQ9" value="2"></td>
+                            <td><input type="radio" name="C4_AQ9" value="3"></td>
+                            <td><input type="radio" name="C4_AQ9" value="4"></td>
+                            <td><input type="radio" name="C4_AQ9" value="5"></td>
+                            <td><input type="radio" name="C4_AQ9" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="dimension-header">HCMS — Performance</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ10</span> HCMS memberikan respons dengan cepat ketika digunakan.</td>
+                            <td><input type="radio" name="C4_AQ10" value="1"></td>
+                            <td><input type="radio" name="C4_AQ10" value="2"></td>
+                            <td><input type="radio" name="C4_AQ10" value="3"></td>
+                            <td><input type="radio" name="C4_AQ10" value="4"></td>
+                            <td><input type="radio" name="C4_AQ10" value="5"></td>
+                            <td><input type="radio" name="C4_AQ10" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ11</span> Proses penyimpanan dan pengolahan data HCMS berlangsung dalam waktu yang wajar.</td>
+                            <td><input type="radio" name="C4_AQ11" value="1"></td>
+                            <td><input type="radio" name="C4_AQ11" value="2"></td>
+                            <td><input type="radio" name="C4_AQ11" value="3"></td>
+                            <td><input type="radio" name="C4_AQ11" value="4"></td>
+                            <td><input type="radio" name="C4_AQ11" value="5"></td>
+                            <td><input type="radio" name="C4_AQ11" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ12</span> Pembuatan laporan melalui HCMS berlangsung dengan cepat.</td>
+                            <td><input type="radio" name="C4_AQ12" value="1"></td>
+                            <td><input type="radio" name="C4_AQ12" value="2"></td>
+                            <td><input type="radio" name="C4_AQ12" value="3"></td>
+                            <td><input type="radio" name="C4_AQ12" value="4"></td>
+                            <td><input type="radio" name="C4_AQ12" value="5"></td>
+                            <td><input type="radio" name="C4_AQ12" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="dimension-header">HCMS — Usability</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ13</span> HCMS mudah dipelajari dan digunakan.</td>
+                            <td><input type="radio" name="C4_AQ13" value="1"></td>
+                            <td><input type="radio" name="C4_AQ13" value="2"></td>
+                            <td><input type="radio" name="C4_AQ13" value="3"></td>
+                            <td><input type="radio" name="C4_AQ13" value="4"></td>
+                            <td><input type="radio" name="C4_AQ13" value="5"></td>
+                            <td><input type="radio" name="C4_AQ13" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ14</span> Menu dan fitur HCMS mudah dipahami.</td>
+                            <td><input type="radio" name="C4_AQ14" value="1"></td>
+                            <td><input type="radio" name="C4_AQ14" value="2"></td>
+                            <td><input type="radio" name="C4_AQ14" value="3"></td>
+                            <td><input type="radio" name="C4_AQ14" value="4"></td>
+                            <td><input type="radio" name="C4_AQ14" value="5"></td>
+                            <td><input type="radio" name="C4_AQ14" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ15</span> HCMS membantu saya menyelesaikan pekerjaan secara efektif.</td>
+                            <td><input type="radio" name="C4_AQ15" value="1"></td>
+                            <td><input type="radio" name="C4_AQ15" value="2"></td>
+                            <td><input type="radio" name="C4_AQ15" value="3"></td>
+                            <td><input type="radio" name="C4_AQ15" value="4"></td>
+                            <td><input type="radio" name="C4_AQ15" value="5"></td>
+                            <td><input type="radio" name="C4_AQ15" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+    <div id="notice_C4" class="branch-notice">
+        ℹ️ Bagian <strong>C4 (Kualitas Aplikasi HCMS)</strong> saat ini dilewati. Pilih <strong>"Ya"</strong> pada Gate C4 di atas (atau centang HCMS di B01) untuk menampilkan butir penilaian.
+    </div>
+    
+
+    <!-- C5. Kualitas Aplikasi WMS Ailox -->
+    <div class="sub-section-header">C5. Kualitas Aplikasi WMS Ailox</div>
+    <div class="card">
+        <label class="question-title">Gate C5: Apakah Anda menggunakan WMS Ailox dalam tiga bulan terakhir? <span class="required">*</span></label>
+        <span class="question-helper">Ya &rarr; isi C5. Tidak &rarr; lewati C5.</span>
+        <div class="radio-group">
+            <label class="option-label"><input type="radio" name="Gate_C5" value="Ya" onchange="toggleAppSection('C5', true)"> Ya (Isi penilaian kualitas WMS Ailox)</label>
+            <label class="option-label"><input type="radio" name="Gate_C5" value="Tidak" checked onchange="toggleAppSection('C5', false)"> Tidak (Lewati C5)</label>
+        </div>
+    </div>
+    <div id="container_C5" class="hidden">
+    
+        <div class="card">
+            <div class="dimension-header">WMS Ailox — Security & Access</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ1</span> WMS Ailox memiliki keamanan yang memadai untuk melindungi informasi perusahaan.</td>
+                            <td><input type="radio" name="C5_AQ1" value="1"></td>
+                            <td><input type="radio" name="C5_AQ1" value="2"></td>
+                            <td><input type="radio" name="C5_AQ1" value="3"></td>
+                            <td><input type="radio" name="C5_AQ1" value="4"></td>
+                            <td><input type="radio" name="C5_AQ1" value="5"></td>
+                            <td><input type="radio" name="C5_AQ1" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ2</span> Hak akses WMS Ailox telah sesuai dengan tanggung jawab pekerjaan saya.</td>
+                            <td><input type="radio" name="C5_AQ2" value="1"></td>
+                            <td><input type="radio" name="C5_AQ2" value="2"></td>
+                            <td><input type="radio" name="C5_AQ2" value="3"></td>
+                            <td><input type="radio" name="C5_AQ2" value="4"></td>
+                            <td><input type="radio" name="C5_AQ2" value="5"></td>
+                            <td><input type="radio" name="C5_AQ2" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ3</span> Data perusahaan terlindungi dari akses pihak yang tidak berwenang melalui WMS Ailox.</td>
+                            <td><input type="radio" name="C5_AQ3" value="1"></td>
+                            <td><input type="radio" name="C5_AQ3" value="2"></td>
+                            <td><input type="radio" name="C5_AQ3" value="3"></td>
+                            <td><input type="radio" name="C5_AQ3" value="4"></td>
+                            <td><input type="radio" name="C5_AQ3" value="5"></td>
+                            <td><input type="radio" name="C5_AQ3" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="dimension-header">WMS Ailox — System Reliability</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ4</span> WMS Ailox dapat diakses ketika dibutuhkan untuk pekerjaan.</td>
+                            <td><input type="radio" name="C5_AQ4" value="1"></td>
+                            <td><input type="radio" name="C5_AQ4" value="2"></td>
+                            <td><input type="radio" name="C5_AQ4" value="3"></td>
+                            <td><input type="radio" name="C5_AQ4" value="4"></td>
+                            <td><input type="radio" name="C5_AQ4" value="5"></td>
+                            <td><input type="radio" name="C5_AQ4" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ5</span> WMS Ailox jarang mengalami kesalahan atau gangguan yang menghambat pekerjaan.</td>
+                            <td><input type="radio" name="C5_AQ5" value="1"></td>
+                            <td><input type="radio" name="C5_AQ5" value="2"></td>
+                            <td><input type="radio" name="C5_AQ5" value="3"></td>
+                            <td><input type="radio" name="C5_AQ5" value="4"></td>
+                            <td><input type="radio" name="C5_AQ5" value="5"></td>
+                            <td><input type="radio" name="C5_AQ5" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ6</span> WMS Ailox dapat beroperasi secara konsisten.</td>
+                            <td><input type="radio" name="C5_AQ6" value="1"></td>
+                            <td><input type="radio" name="C5_AQ6" value="2"></td>
+                            <td><input type="radio" name="C5_AQ6" value="3"></td>
+                            <td><input type="radio" name="C5_AQ6" value="4"></td>
+                            <td><input type="radio" name="C5_AQ6" value="5"></td>
+                            <td><input type="radio" name="C5_AQ6" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="dimension-header">WMS Ailox — Data Quality</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ7</span> Data yang tersedia di WMS Ailox sesuai dengan kondisi atau transaksi sebenarnya.</td>
+                            <td><input type="radio" name="C5_AQ7" value="1"></td>
+                            <td><input type="radio" name="C5_AQ7" value="2"></td>
+                            <td><input type="radio" name="C5_AQ7" value="3"></td>
+                            <td><input type="radio" name="C5_AQ7" value="4"></td>
+                            <td><input type="radio" name="C5_AQ7" value="5"></td>
+                            <td><input type="radio" name="C5_AQ7" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ8</span> Data WMS Ailox konsisten pada proses atau modul yang saling berkaitan.</td>
+                            <td><input type="radio" name="C5_AQ8" value="1"></td>
+                            <td><input type="radio" name="C5_AQ8" value="2"></td>
+                            <td><input type="radio" name="C5_AQ8" value="3"></td>
+                            <td><input type="radio" name="C5_AQ8" value="4"></td>
+                            <td><input type="radio" name="C5_AQ8" value="5"></td>
+                            <td><input type="radio" name="C5_AQ8" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ9</span> Informasi yang disediakan WMS Ailox sesuai dengan kebutuhan pekerjaan saya.</td>
+                            <td><input type="radio" name="C5_AQ9" value="1"></td>
+                            <td><input type="radio" name="C5_AQ9" value="2"></td>
+                            <td><input type="radio" name="C5_AQ9" value="3"></td>
+                            <td><input type="radio" name="C5_AQ9" value="4"></td>
+                            <td><input type="radio" name="C5_AQ9" value="5"></td>
+                            <td><input type="radio" name="C5_AQ9" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="dimension-header">WMS Ailox — Performance</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ10</span> WMS Ailox memberikan respons dengan cepat ketika digunakan.</td>
+                            <td><input type="radio" name="C5_AQ10" value="1"></td>
+                            <td><input type="radio" name="C5_AQ10" value="2"></td>
+                            <td><input type="radio" name="C5_AQ10" value="3"></td>
+                            <td><input type="radio" name="C5_AQ10" value="4"></td>
+                            <td><input type="radio" name="C5_AQ10" value="5"></td>
+                            <td><input type="radio" name="C5_AQ10" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ11</span> Proses penyimpanan dan pengolahan data WMS Ailox berlangsung dalam waktu yang wajar.</td>
+                            <td><input type="radio" name="C5_AQ11" value="1"></td>
+                            <td><input type="radio" name="C5_AQ11" value="2"></td>
+                            <td><input type="radio" name="C5_AQ11" value="3"></td>
+                            <td><input type="radio" name="C5_AQ11" value="4"></td>
+                            <td><input type="radio" name="C5_AQ11" value="5"></td>
+                            <td><input type="radio" name="C5_AQ11" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ12</span> Pembuatan laporan melalui WMS Ailox berlangsung dengan cepat.</td>
+                            <td><input type="radio" name="C5_AQ12" value="1"></td>
+                            <td><input type="radio" name="C5_AQ12" value="2"></td>
+                            <td><input type="radio" name="C5_AQ12" value="3"></td>
+                            <td><input type="radio" name="C5_AQ12" value="4"></td>
+                            <td><input type="radio" name="C5_AQ12" value="5"></td>
+                            <td><input type="radio" name="C5_AQ12" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="dimension-header">WMS Ailox — Usability</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        
+                        <tr>
+                            <td><span class="item-code">AQ13</span> WMS Ailox mudah dipelajari dan digunakan.</td>
+                            <td><input type="radio" name="C5_AQ13" value="1"></td>
+                            <td><input type="radio" name="C5_AQ13" value="2"></td>
+                            <td><input type="radio" name="C5_AQ13" value="3"></td>
+                            <td><input type="radio" name="C5_AQ13" value="4"></td>
+                            <td><input type="radio" name="C5_AQ13" value="5"></td>
+                            <td><input type="radio" name="C5_AQ13" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ14</span> Menu dan fitur WMS Ailox mudah dipahami.</td>
+                            <td><input type="radio" name="C5_AQ14" value="1"></td>
+                            <td><input type="radio" name="C5_AQ14" value="2"></td>
+                            <td><input type="radio" name="C5_AQ14" value="3"></td>
+                            <td><input type="radio" name="C5_AQ14" value="4"></td>
+                            <td><input type="radio" name="C5_AQ14" value="5"></td>
+                            <td><input type="radio" name="C5_AQ14" value="N/A"></td>
+                        </tr>
+            
+                        <tr>
+                            <td><span class="item-code">AQ15</span> WMS Ailox membantu saya menyelesaikan pekerjaan secara efektif.</td>
+                            <td><input type="radio" name="C5_AQ15" value="1"></td>
+                            <td><input type="radio" name="C5_AQ15" value="2"></td>
+                            <td><input type="radio" name="C5_AQ15" value="3"></td>
+                            <td><input type="radio" name="C5_AQ15" value="4"></td>
+                            <td><input type="radio" name="C5_AQ15" value="5"></td>
+                            <td><input type="radio" name="C5_AQ15" value="N/A"></td>
+                        </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+    <div id="notice_C5" class="branch-notice">
+        ℹ️ Bagian <strong>C5 (Kualitas Aplikasi WMS Ailox)</strong> saat ini dilewati. Pilih <strong>"Ya"</strong> pada Gate C5 di atas (atau centang WMS Ailox di B01) untuk menampilkan butir penilaian.
+    </div>
+    
+
+        <!-- D. KUALITAS INFRASTRUKTUR TI (X3) -->
+        <div class="section-banner">D. KUALITAS Infrastruktur IT (X3)</div>
+        <div class="section-desc">Bagian ini diisi oleh seluruh responden berdasarkan pengalaman menggunakan fasilitas TI perusahaan.</div>
+
+        <!-- Network Availability -->
+        <div class="card">
+            <div class="dimension-header">Network Availability</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="item-code">IQ1</span> Jaringan perusahaan tersedia ketika dibutuhkan untuk pekerjaan.</td>
+                            <td><input type="radio" name="IQ1" value="1"></td>
+                            <td><input type="radio" name="IQ1" value="2"></td>
+                            <td><input type="radio" name="IQ1" value="3"></td>
+                            <td><input type="radio" name="IQ1" value="4"></td>
+                            <td><input type="radio" name="IQ1" value="5"></td>
+                            <td><input type="radio" name="IQ1" value="N/A"></td>
+                        </tr>
+                        <tr>
+                            <td><span class="item-code">IQ2</span> Koneksi antar lokasi atau VPN berfungsi dengan baik ketika dibutuhkan.</td>
+                            <td><input type="radio" name="IQ2" value="1"></td>
+                            <td><input type="radio" name="IQ2" value="2"></td>
+                            <td><input type="radio" name="IQ2" value="3"></td>
+                            <td><input type="radio" name="IQ2" value="4"></td>
+                            <td><input type="radio" name="IQ2" value="5"></td>
+                            <td><input type="radio" name="IQ2" value="N/A"></td>
+                        </tr>
+                        <tr>
+                            <td><span class="item-code">IQ3</span> Infrastruktur jaringan perusahaan mendukung aktivitas pekerjaan saya.</td>
+                            <td><input type="radio" name="IQ3" value="1"></td>
+                            <td><input type="radio" name="IQ3" value="2"></td>
+                            <td><input type="radio" name="IQ3" value="3"></td>
+                            <td><input type="radio" name="IQ3" value="4"></td>
+                            <td><input type="radio" name="IQ3" value="5"></td>
+                            <td><input type="radio" name="IQ3" value="N/A"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Network Stability -->
+        <div class="card">
+            <div class="dimension-header">Network Stability</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="item-code">IQ4</span> Koneksi internet perusahaan tidak sering terputus.</td>
+                            <td><input type="radio" name="IQ4" value="1"></td>
+                            <td><input type="radio" name="IQ4" value="2"></td>
+                            <td><input type="radio" name="IQ4" value="3"></td>
+                            <td><input type="radio" name="IQ4" value="4"></td>
+                            <td><input type="radio" name="IQ4" value="5"></td>
+                            <td><input type="radio" name="IQ4" value="N/A"></td>
+                        </tr>
+                        <tr>
+                            <td><span class="item-code">IQ5</span> Jaringan perusahaan stabil selama jam kerja.</td>
+                            <td><input type="radio" name="IQ5" value="1"></td>
+                            <td><input type="radio" name="IQ5" value="2"></td>
+                            <td><input type="radio" name="IQ5" value="3"></td>
+                            <td><input type="radio" name="IQ5" value="4"></td>
+                            <td><input type="radio" name="IQ5" value="5"></td>
+                            <td><input type="radio" name="IQ5" value="N/A"></td>
+                        </tr>
+                        <tr>
+                            <td><span class="item-code">IQ6</span> Gangguan jaringan ditangani dalam waktu yang wajar.</td>
+                            <td><input type="radio" name="IQ6" value="1"></td>
+                            <td><input type="radio" name="IQ6" value="2"></td>
+                            <td><input type="radio" name="IQ6" value="3"></td>
+                            <td><input type="radio" name="IQ6" value="4"></td>
+                            <td><input type="radio" name="IQ6" value="5"></td>
+                            <td><input type="radio" name="IQ6" value="N/A"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Infrastructure Performance -->
+        <div class="card">
+            <div class="dimension-header">Infrastructure Performance</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="item-code">IQ7</span> Kecepatan internet mendukung kebutuhan pekerjaan saya.</td>
+                            <td><input type="radio" name="IQ7" value="1"></td>
+                            <td><input type="radio" name="IQ7" value="2"></td>
+                            <td><input type="radio" name="IQ7" value="3"></td>
+                            <td><input type="radio" name="IQ7" value="4"></td>
+                            <td><input type="radio" name="IQ7" value="5"></td>
+                            <td><input type="radio" name="IQ7" value="N/A"></td>
+                        </tr>
+                        <tr>
+                            <td><span class="item-code">IQ8</span> Akses ke aplikasi dan server perusahaan berjalan dengan baik.</td>
+                            <td><input type="radio" name="IQ8" value="1"></td>
+                            <td><input type="radio" name="IQ8" value="2"></td>
+                            <td><input type="radio" name="IQ8" value="3"></td>
+                            <td><input type="radio" name="IQ8" value="4"></td>
+                            <td><input type="radio" name="IQ8" value="5"></td>
+                            <td><input type="radio" name="IQ8" value="N/A"></td>
+                        </tr>
+                        <tr>
+                            <td><span class="item-code">IQ9</span> Komputer dan fasilitas TI yang disediakan perusahaan mendukung pekerjaan saya.</td>
+                            <td><input type="radio" name="IQ9" value="1"></td>
+                            <td><input type="radio" name="IQ9" value="2"></td>
+                            <td><input type="radio" name="IQ9" value="3"></td>
+                            <td><input type="radio" name="IQ9" value="4"></td>
+                            <td><input type="radio" name="IQ9" value="5"></td>
+                            <td><input type="radio" name="IQ9" value="N/A"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- E. KUALITAS LAYANAN IT SUPPORT (X2) -->
+        <div class="section-banner">E. KUALITAS LAYANAN IT SUPPORT (X2)</div>
+        <div class="section-desc">Penilaian terhadap pelayanan tim IT Support LJR Group.</div>
+
+        <!-- E01 -->
+        <div class="card">
+            <label class="question-title">E01. Apakah Anda pernah menggunakan layanan IT Support dalam tiga bulan terakhir? <span class="required">*</span></label>
+            <span class="question-helper">Ya &rarr; lanjutkan ke E02 dan bagian E03.<br>Tidak &rarr; lewati bagian E02 dan E03, lanjut ke bagian F.</span>
+            <div class="radio-group">
+                <label class="option-label"><input type="radio" name="E01" value="Ya" checked onchange="toggleSectionE(true)" required> Ya (Lanjutkan ke E02 dan penilaian SQ1–SQ12)</label>
+                <label class="option-label"><input type="radio" name="E01" value="Tidak" onchange="toggleSectionE(false)"> Tidak (Lewati bagian E02 dan E03, lanjut ke bagian F)</label>
+            </div>
+        </div>
+
+        <div id="sectionEContainer">
+            <!-- E02 -->
+            <div class="card">
+                <label class="question-title">E02. Melalui saluran apa Anda menghubungi IT Support? <span class="required">*</span></label>
+                <span class="question-helper">Boleh memilih lebih dari satu.</span>
+                <div class="checkbox-group">
+                    <label class="option-label"><input type="checkbox" name="E02" value="Portal Helpdesk / LIMA"> Portal Helpdesk / LIMA</label>
+                    <label class="option-label"><input type="checkbox" name="E02" value="WhatsApp"> WhatsApp</label>
+                    <label class="option-label"><input type="checkbox" name="E02" value="Telepon"> Telepon</label>
+                    <label class="option-label"><input type="checkbox" name="E02" value="Datang langsung (Walk-in)"> Datang langsung (Walk-in)</label>
+                    <label class="option-label"><input type="checkbox" name="E02" value="Lainnya"> Lainnya</label>
+                </div>
+            </div>
+
+            <!-- E03: Responsiveness -->
+            <div class="card">
+                <div class="dimension-header">E03. Penilaian Layanan IT Support — Responsiveness</div>
+                <div class="grid-wrapper">
+                    <table class="likert-grid">
+                        <thead>
+                            <tr>
+                                <th>Pernyataan</th>
+                                <th>1<br><small>STS</small></th>
+                                <th>2<br><small>TS</small></th>
+                                <th>3<br><small>N</small></th>
+                                <th>4<br><small>S</small></th>
+                                <th>5<br><small>SS</small></th>
+                                <th>N/A<br><small>Tidak Relevan</small></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="item-code">SQ1</span> Tim IT memberikan respons dalam waktu yang wajar terhadap permintaan atau kendala saya.</td>
+                                <td><input type="radio" name="SQ1" value="1"></td>
+                                <td><input type="radio" name="SQ1" value="2"></td>
+                                <td><input type="radio" name="SQ1" value="3"></td>
+                                <td><input type="radio" name="SQ1" value="4"></td>
+                                <td><input type="radio" name="SQ1" value="5"></td>
+                                <td><input type="radio" name="SQ1" value="N/A"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="item-code">SQ2</span> Tim IT memberikan tanggapan awal yang jelas.</td>
+                                <td><input type="radio" name="SQ2" value="1"></td>
+                                <td><input type="radio" name="SQ2" value="2"></td>
+                                <td><input type="radio" name="SQ2" value="3"></td>
+                                <td><input type="radio" name="SQ2" value="4"></td>
+                                <td><input type="radio" name="SQ2" value="5"></td>
+                                <td><input type="radio" name="SQ2" value="N/A"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="item-code">SQ3</span> Tim IT memberikan informasi perkembangan apabila penyelesaian membutuhkan waktu.</td>
+                                <td><input type="radio" name="SQ3" value="1"></td>
+                                <td><input type="radio" name="SQ3" value="2"></td>
+                                <td><input type="radio" name="SQ3" value="3"></td>
+                                <td><input type="radio" name="SQ3" value="4"></td>
+                                <td><input type="radio" name="SQ3" value="5"></td>
+                                <td><input type="radio" name="SQ3" value="N/A"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Resolution Reliability -->
+            <div class="card">
+                <div class="dimension-header">Resolution Reliability</div>
+                <div class="grid-wrapper">
+                    <table class="likert-grid">
+                        <thead>
+                            <tr>
+                                <th>Pernyataan</th>
+                                <th>1<br><small>STS</small></th>
+                                <th>2<br><small>TS</small></th>
+                                <th>3<br><small>N</small></th>
+                                <th>4<br><small>S</small></th>
+                                <th>5<br><small>SS</small></th>
+                                <th>N/A<br><small>Tidak Relevan</small></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="item-code">SQ4</span> Tim IT mampu menyelesaikan kendala sesuai kebutuhan saya.</td>
+                                <td><input type="radio" name="SQ4" value="1"></td>
+                                <td><input type="radio" name="SQ4" value="2"></td>
+                                <td><input type="radio" name="SQ4" value="3"></td>
+                                <td><input type="radio" name="SQ4" value="4"></td>
+                                <td><input type="radio" name="SQ4" value="5"></td>
+                                <td><input type="radio" name="SQ4" value="N/A"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="item-code">SQ5</span> Solusi yang diberikan efektif dalam mengatasi kendala.</td>
+                                <td><input type="radio" name="SQ5" value="1"></td>
+                                <td><input type="radio" name="SQ5" value="2"></td>
+                                <td><input type="radio" name="SQ5" value="3"></td>
+                                <td><input type="radio" name="SQ5" value="4"></td>
+                                <td><input type="radio" name="SQ5" value="5"></td>
+                                <td><input type="radio" name="SQ5" value="N/A"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="item-code">SQ6</span> Kendala yang telah diselesaikan tidak sering terjadi kembali.</td>
+                                <td><input type="radio" name="SQ6" value="1"></td>
+                                <td><input type="radio" name="SQ6" value="2"></td>
+                                <td><input type="radio" name="SQ6" value="3"></td>
+                                <td><input type="radio" name="SQ6" value="4"></td>
+                                <td><input type="radio" name="SQ6" value="5"></td>
+                                <td><input type="radio" name="SQ6" value="N/A"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Assurance & Competence -->
+            <div class="card">
+                <div class="dimension-header">Assurance &amp; Competence</div>
+                <div class="grid-wrapper">
+                    <table class="likert-grid">
+                        <thead>
+                            <tr>
+                                <th>Pernyataan</th>
+                                <th>1<br><small>STS</small></th>
+                                <th>2<br><small>TS</small></th>
+                                <th>3<br><small>N</small></th>
+                                <th>4<br><small>S</small></th>
+                                <th>5<br><small>SS</small></th>
+                                <th>N/A<br><small>Tidak Relevan</small></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="item-code">SQ7</span> Staf IT memiliki pengetahuan dan kemampuan teknis yang memadai.</td>
+                                <td><input type="radio" name="SQ7" value="1"></td>
+                                <td><input type="radio" name="SQ7" value="2"></td>
+                                <td><input type="radio" name="SQ7" value="3"></td>
+                                <td><input type="radio" name="SQ7" value="4"></td>
+                                <td><input type="radio" name="SQ7" value="5"></td>
+                                <td><input type="radio" name="SQ7" value="N/A"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="item-code">SQ8</span> Staf IT mampu menjelaskan penyebab kendala dengan baik.</td>
+                                <td><input type="radio" name="SQ8" value="1"></td>
+                                <td><input type="radio" name="SQ8" value="2"></td>
+                                <td><input type="radio" name="SQ8" value="3"></td>
+                                <td><input type="radio" name="SQ8" value="4"></td>
+                                <td><input type="radio" name="SQ8" value="5"></td>
+                                <td><input type="radio" name="SQ8" value="N/A"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="item-code">SQ9</span> Saya merasa yakin terhadap solusi yang diberikan oleh tim IT.</td>
+                                <td><input type="radio" name="SQ9" value="1"></td>
+                                <td><input type="radio" name="SQ9" value="2"></td>
+                                <td><input type="radio" name="SQ9" value="3"></td>
+                                <td><input type="radio" name="SQ9" value="4"></td>
+                                <td><input type="radio" name="SQ9" value="5"></td>
+                                <td><input type="radio" name="SQ9" value="N/A"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Empathy & Communication -->
+            <div class="card">
+                <div class="dimension-header">Empathy &amp; Communication</div>
+                <div class="grid-wrapper">
+                    <table class="likert-grid">
+                        <thead>
+                            <tr>
+                                <th>Pernyataan</th>
+                                <th>1<br><small>STS</small></th>
+                                <th>2<br><small>TS</small></th>
+                                <th>3<br><small>N</small></th>
+                                <th>4<br><small>S</small></th>
+                                <th>5<br><small>SS</small></th>
+                                <th>N/A<br><small>Tidak Relevan</small></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="item-code">SQ10</span> Tim IT memahami kesulitan yang saya alami ketika bekerja.</td>
+                                <td><input type="radio" name="SQ10" value="1"></td>
+                                <td><input type="radio" name="SQ10" value="2"></td>
+                                <td><input type="radio" name="SQ10" value="3"></td>
+                                <td><input type="radio" name="SQ10" value="4"></td>
+                                <td><input type="radio" name="SQ10" value="5"></td>
+                                <td><input type="radio" name="SQ10" value="N/A"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="item-code">SQ11</span> Staf IT memberikan pelayanan dengan sopan dan profesional.</td>
+                                <td><input type="radio" name="SQ11" value="1"></td>
+                                <td><input type="radio" name="SQ11" value="2"></td>
+                                <td><input type="radio" name="SQ11" value="3"></td>
+                                <td><input type="radio" name="SQ11" value="4"></td>
+                                <td><input type="radio" name="SQ11" value="5"></td>
+                                <td><input type="radio" name="SQ11" value="N/A"></td>
+                            </tr>
+                            <tr>
+                                <td><span class="item-code">SQ12</span> Komunikasi dari tim IT mudah dipahami.</td>
+                                <td><input type="radio" name="SQ12" value="1"></td>
+                                <td><input type="radio" name="SQ12" value="2"></td>
+                                <td><input type="radio" name="SQ12" value="3"></td>
+                                <td><input type="radio" name="SQ12" value="4"></td>
+                                <td><input type="radio" name="SQ12" value="5"></td>
+                                <td><input type="radio" name="SQ12" value="N/A"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="sectionESkippedNotice" class="branch-notice hidden">
+            ℹ️ Anda memilih <strong>Tidak</strong> pada E01, sehingga bagian <strong>E02 dan E03</strong> dilewati dan langsung lanjut ke bagian F.
+        </div>
+
+        <!-- F. KEPUASAN PELANGGAN INTERNAL (Y) -->
+        <div class="section-banner">F. KEPUASAN PELANGGAN INTERNAL (Y)</div>
+        <div class="section-desc">Bagian ini diisi oleh seluruh responden berdasarkan pengalaman menggunakan layanan TI perusahaan.</div>
+
+        <!-- Overall Satisfaction -->
+        <div class="card">
+            <div class="dimension-header">Overall Satisfaction</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="item-code">CS1</span> Secara keseluruhan, saya puas terhadap layanan teknologi informasi perusahaan.</td>
+                            <td><input type="radio" name="CS1" value="1"></td>
+                            <td><input type="radio" name="CS1" value="2"></td>
+                            <td><input type="radio" name="CS1" value="3"></td>
+                            <td><input type="radio" name="CS1" value="4"></td>
+                            <td><input type="radio" name="CS1" value="5"></td>
+                            <td><input type="radio" name="CS1" value="N/A"></td>
+                        </tr>
+                        <tr>
+                            <td><span class="item-code">CS2</span> Layanan IT perusahaan mendukung kebutuhan pekerjaan saya.</td>
+                            <td><input type="radio" name="CS2" value="1"></td>
+                            <td><input type="radio" name="CS2" value="2"></td>
+                            <td><input type="radio" name="CS2" value="3"></td>
+                            <td><input type="radio" name="CS2" value="4"></td>
+                            <td><input type="radio" name="CS2" value="5"></td>
+                            <td><input type="radio" name="CS2" value="N/A"></td>
+                        </tr>
+                        <tr>
+                            <td><span class="item-code">CS3</span> Pengalaman saya dalam menggunakan layanan IT perusahaan secara keseluruhan positif.</td>
+                            <td><input type="radio" name="CS3" value="1"></td>
+                            <td><input type="radio" name="CS3" value="2"></td>
+                            <td><input type="radio" name="CS3" value="3"></td>
+                            <td><input type="radio" name="CS3" value="4"></td>
+                            <td><input type="radio" name="CS3" value="5"></td>
+                            <td><input type="radio" name="CS3" value="N/A"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Expectation Fulfillment -->
+        <div class="card">
+            <div class="dimension-header">Expectation Fulfillment</div>
+            <div class="grid-wrapper">
+                <table class="likert-grid">
+                    <thead>
+                        <tr>
+                            <th>Pernyataan</th>
+                            <th>1<br><small>STS</small></th>
+                            <th>2<br><small>TS</small></th>
+                            <th>3<br><small>N</small></th>
+                            <th>4<br><small>S</small></th>
+                            <th>5<br><small>SS</small></th>
+                            <th>N/A<br><small>Tidak Relevan</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="item-code">CS4</span> Kualitas layanan IT perusahaan telah memenuhi harapan saya.</td>
+                            <td><input type="radio" name="CS4" value="1"></td>
+                            <td><input type="radio" name="CS4" value="2"></td>
+                            <td><input type="radio" name="CS4" value="3"></td>
+                            <td><input type="radio" name="CS4" value="4"></td>
+                            <td><input type="radio" name="CS4" value="5"></td>
+                            <td><input type="radio" name="CS4" value="N/A"></td>
+                        </tr>
+                        <tr>
+                            <td><span class="item-code">CS5</span> Layanan IT perusahaan memenuhi kebutuhan pekerjaan saya.</td>
+                            <td><input type="radio" name="CS5" value="1"></td>
+                            <td><input type="radio" name="CS5" value="2"></td>
+                            <td><input type="radio" name="CS5" value="3"></td>
+                            <td><input type="radio" name="CS5" value="4"></td>
+                            <td><input type="radio" name="CS5" value="5"></td>
+                            <td><input type="radio" name="CS5" value="N/A"></td>
+                        </tr>
+                        <tr>
+                            <td><span class="item-code">CS6</span> Layanan IT membantu saya menyelesaikan pekerjaan tanpa hambatan yang tidak perlu.</td>
+                            <td><input type="radio" name="CS6" value="1"></td>
+                            <td><input type="radio" name="CS6" value="2"></td>
+                            <td><input type="radio" name="CS6" value="3"></td>
+                            <td><input type="radio" name="CS6" value="4"></td>
+                            <td><input type="radio" name="CS6" value="5"></td>
+                            <td><input type="radio" name="CS6" value="N/A"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- G. SARAN DAN MASUKAN -->
+        <div class="section-banner">G. SARAN DAN MASUKAN</div>
+        <div class="section-desc">Silakan sampaikan pendapat, pengalaman, dan harapan Anda untuk evaluasi layanan IT LJR Group.</div>
+
+        <div class="card">
+            <label class="question-title" for="G01">G01. Apa aspek terbaik dari aplikasi perusahaan yang Anda gunakan?</label>
+            <span class="question-helper">Jawaban bebas.</span>
+            <textarea id="G01" name="G01" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        </div>
+
+        <div class="card">
+            <label class="question-title" for="G02">G02. Apa kendala aplikasi yang paling sering menghambat pekerjaan Anda?</label>
+            <span class="question-helper">Jawaban bebas.</span>
+            <textarea id="G02" name="G02" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        </div>
+
+        <div class="card">
+            <label class="question-title" for="G03">G03. Apa perbaikan yang paling Anda harapkan untuk aplikasi perusahaan?</label>
+            <span class="question-helper">Jawaban bebas.</span>
+            <textarea id="G03" name="G03" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        </div>
+
+        <div class="card">
+            <label class="question-title" for="G04">G04. Apa kendala Infrastruktur IT atau jaringan yang paling sering Anda alami?</label>
+            <span class="question-helper">Jawaban bebas.</span>
+            <textarea id="G04" name="G04" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        </div>
+
+        <div class="card">
+            <label class="question-title" for="G05">G05. Apa perbaikan yang paling Anda harapkan dari layanan IT Support?</label>
+            <span class="question-helper">Jawaban bebas.</span>
+            <textarea id="G05" name="G05" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        </div>
+
+        <div class="card">
+            <label class="question-title" for="G06">G06. Apakah ada masukan lain terkait kualitas layanan IT perusahaan?</label>
+            <span class="question-helper">Jawaban bebas.</span>
+            <textarea id="G06" name="G06" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        </div>
+
+        <!-- SUBMIT BUTTONS -->
+        <div class="actions">
+            <button type="submit" class="btn-submit">Kirim Jawaban (Simulasi Preview)</button>
+            <button type="button" class="btn-clear" onclick="clearForm()">Kosongkan formulir</button>
+        </div>
+    </form>
+</div>
+
+<div id="toast" class="toast">
+    Terima kasih atas partisipasi Anda. Masukan yang diberikan akan menjadi bahan evaluasi untuk meningkatkan kualitas layanan teknologi informasi di lingkungan LJR Group.
+</div>
+
+<script>
+    function toggleAppSection(appId, show) {
+        const container = document.getElementById('container_' + appId);
+        const notice = document.getElementById('notice_' + appId);
+        if (show) {
+            container.classList.remove('hidden');
+            notice.classList.add('hidden');
+        } else {
+            container.classList.add('hidden');
+            notice.classList.remove('hidden');
+        }
+    }
+
+    function syncFromB01() {
+        const noneCheck = document.getElementById('noneAppCheck');
+        const appChecks = document.querySelectorAll('.app-check');
+        let anyChecked = false;
+        appChecks.forEach(cb => {
+            const gateId = cb.getAttribute('data-gate');
+            const radioYa = document.querySelector(`input[name="Gate_${gateId}"][value="Ya"]`);
+            const radioTidak = document.querySelector(`input[name="Gate_${gateId}"][value="Tidak"]`);
+            if (cb.checked) {
+                anyChecked = true;
+                if (radioYa) radioYa.checked = true;
+                toggleAppSection(gateId, true);
+            } else {
+                if (radioTidak) radioTidak.checked = true;
+                toggleAppSection(gateId, false);
+            }
+        });
+        if (anyChecked && noneCheck) {
+            noneCheck.checked = false;
+        }
+    }
+
+    function handleNoneApp() {
+        const noneCheck = document.getElementById('noneAppCheck');
+        if (noneCheck && noneCheck.checked) {
+            const appChecks = document.querySelectorAll('.app-check');
+            appChecks.forEach(cb => {
+                cb.checked = false;
+            });
+            syncFromB01();
+        }
+    }
+
+    function toggleSectionE(show) {
+        const secE = document.getElementById('sectionEContainer');
+        const noticeE = document.getElementById('sectionESkippedNotice');
+        if (show) {
+            secE.classList.remove('hidden');
+            noticeE.classList.add('hidden');
+        } else {
+            secE.classList.add('hidden');
+            noticeE.classList.remove('hidden');
+        }
+    }
+
+    function clearForm() {
+        document.getElementById('itssForm').reset();
+        ['C1', 'C2', 'C3', 'C4', 'C5'].forEach(id => toggleAppSection(id, false));
+        toggleSectionE(true);
+    }
+
+    // Ganti URL di bawah ini dengan URL Web App dari Google Apps Script Anda
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby7h-w8DuSnUQHBbNW3MvryCgbOcsR7udK1UPeBOsMJzeCwuuOONzL_yBzD2j26la0vQg/exec";
+
+    document.getElementById('itssForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const btnSubmit = document.querySelector('.btn-submit');
+        const originalText = btnSubmit.textContent;
+        btnSubmit.disabled = true;
+        btnSubmit.textContent = "Mengirim jawaban...";
+
+        // Kumpulkan semua input formulir termasuk checkbox ganda (seperti B01 & E02)
+        const formData = new FormData(this);
+        const payload = {};
+        
+        for (const [key, value] of formData.entries()) {
+            if (payload[key]) {
+                payload[key] += ", " + value;
+            } else {
+                payload[key] = value;
+            }
+        }
+
+        // Kirim ke Google Sheets
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(() => {
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            clearForm();
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 5000);
+        })
+        .catch(error => {
+            alert("Terjadi kesalahan saat mengirim data: " + error.message);
+        })
+        .finally(() => {
+            btnSubmit.disabled = false;
+            btnSubmit.textContent = originalText;
+        });
+    });
+</script>
+
+</body>
+</html>
